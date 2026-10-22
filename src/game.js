@@ -12,6 +12,7 @@ export function legalMove(state,from,to){if(from===to||!state[from]?.length||!st
 export function moveRaw(state,from,to){if(!legalMove(state,from,to))return null; const next=clone(state), n=topRun(next,from), items=next[from].splice(-n); next[to].push(...items); return next;}
 export function resolveCompleted(state){const next=clone(state); const cleared=[]; next.forEach((slot,i)=>{if(slot.length===CAPACITY && slot.every(x=>x===slot[0])){cleared.push({slot:i,type:slot[0],count:CAPACITY});next[i]=[];}}); return {state:next,cleared};}
 export function move(state,from,to){const raw=moveRaw(state,from,to); return raw?resolveCompleted(raw).state:null;}
+export function applyMove(state,from,to){const raw=moveRaw(state,from,to); if(!raw)return null; const resolved=resolveCompleted(raw); return {state:resolved.state,rawState:raw,cleared:resolved.cleared};}
 export function won(state){return state.every(a=>a.length===0);}
 export function hasLegalMove(state){for(let i=0;i<state.length;i++)for(let j=0;j<state.length;j++)if(legalMove(state,i,j))return true;return false;}
 export function key(s){return s.map(a=>a.join('')).join('|');}
