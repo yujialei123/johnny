@@ -9,7 +9,9 @@ export const LEVELS=[
 export function clone(s){return s.map(x=>[...x]);}
 export function topRun(state,from){const a=state[from]; if(!a.length)return 0; const t=a[a.length-1]; let n=0; for(let i=a.length-1;i>=0&&a[i]===t;i--)n++; return n;}
 export function legalMove(state,from,to){if(from===to||!state[from]?.length||!state[to])return false; const n=topRun(state,from), dest=state[to]; return dest.length===0 || (dest[dest.length-1]===state[from][state[from].length-1] && dest.length+n<=CAPACITY);}
-export function move(state,from,to){if(!legalMove(state,from,to))return null; const next=clone(state), n=topRun(next,from), items=next[from].splice(-n); next[to].push(...items); if(next[to].length===CAPACITY && next[to].every(x=>x===next[to][0])) next[to].length=0; return next;}
+export function moveRaw(state,from,to){if(!legalMove(state,from,to))return null; const next=clone(state), n=topRun(next,from), items=next[from].splice(-n); next[to].push(...items); return next;}
+export function resolveCompleted(state){const next=clone(state); const cleared=[]; next.forEach((slot,i)=>{if(slot.length===CAPACITY && slot.every(x=>x===slot[0])){cleared.push({slot:i,type:slot[0],count:CAPACITY});next[i]=[];}}); return {state:next,cleared};}
+export function move(state,from,to){const raw=moveRaw(state,from,to); return raw?resolveCompleted(raw).state:null;}
 export function won(state){return state.every(a=>a.length===0);}
 export function hasLegalMove(state){for(let i=0;i<state.length;i++)for(let j=0;j<state.length;j++)if(legalMove(state,i,j))return true;return false;}
 export function key(s){return s.map(a=>a.join('')).join('|');}
