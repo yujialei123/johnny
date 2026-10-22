@@ -2,9 +2,9 @@ export const CAPACITY=4;
 export const TYPES=['shell','starfish','conch','pearl'];
 export const ICONS={shell:'🐚',starfish:'⭐',conch:'🐌',pearl:'🟢'};
 export const LEVELS=[
- [['shell','shell','starfish','starfish'],['conch','conch','pearl','pearl'],['shell','shell','conch','conch'],['starfish','starfish','pearl','pearl'],[],[],[],[]],
- [['shell','starfish','shell'],['starfish','shell','starfish'],['conch','conch','pearl','pearl'],['pearl','pearl','conch','conch'],[],[],[],[]],
- [['shell','starfish','conch','pearl'],['starfish','conch','pearl','shell'],['conch','pearl','shell','starfish'],['pearl','shell','starfish','conch'],[],[],[],[]]
+ [['shell','shell','shell'],['shell'],['starfish','starfish','starfish'],['starfish'],['conch','conch','conch'],['conch'],['pearl','pearl','pearl'],['pearl']],
+ [['starfish','starfish','starfish'],['starfish'],['conch','conch','conch'],['conch'],['pearl','pearl','pearl'],['pearl'],['shell','shell','shell'],['shell']],
+ [['conch','conch','conch'],['conch'],['pearl','pearl','pearl'],['pearl'],['shell','shell','shell'],['shell'],['starfish','starfish','starfish'],['starfish']]
 ];
 export function clone(s){return s.map(x=>[...x]);}
 export function topRun(state,from){const a=state[from]; if(!a.length)return 0; const t=a[a.length-1]; let n=0; for(let i=a.length-1;i>=0&&a[i]===t;i--)n++; return n;}
