@@ -2,7 +2,7 @@ export const CAPACITY=4;
 export const TYPES=['shell','starfish','conch','pearl'];
 export const ICONS={shell:'🐚',starfish:'⭐',conch:'🐌',pearl:'🟢'};
 export const LEVELS=[
- [['shell','shell','shell'],['shell'],['starfish','starfish','starfish'],['starfish'],['conch','conch','conch'],['conch'],['pearl','pearl','pearl'],['pearl']],
+ [['shell','starfish','shell','starfish'],['starfish','shell','starfish','shell'],[],[],[],[],[],[]],
  [['starfish','starfish','starfish'],['starfish'],['conch','conch','conch'],['conch'],['pearl','pearl','pearl'],['pearl'],['shell','shell','shell'],['shell']],
  [['conch','conch','conch'],['conch'],['pearl','pearl','pearl'],['pearl'],['shell','shell','shell'],['shell'],['starfish','starfish','starfish'],['starfish']]
 ];
