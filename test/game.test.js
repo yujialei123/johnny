@@ -5,4 +5,4 @@ test('reject full or mismatched target',()=>{assert.equal(legalMove([['a'],['b',
 test('full matching group clears, mixed group does not',()=>{assert.deepEqual(move([['a'],['a','a','a']],0,1),[[],[]]); assert.equal(move([['a'],['a','a','b']],0,1),null);});
 test('win requires every slot empty',()=>{assert.equal(won([['a','a','a','a'],[],[],[],[],[],[],[]]),false);assert.equal(won([[],[],[],[],[],[],[],[]]),true)});
 test('detect deadlock',()=>assert.equal(hasLegalMove([['a','b'],['b','a'],[],[],[],[],[],[]]),true));
-test('one move resolves every completed slot',()=>{const s=[['a'],['a','a','a'],['b'],['b','b','b'],[],[],[],[]];const r=applyMove(s,0,1);assert.equal(r.cleared.length,2);assert.deepEqual(r.state,[[],[],[],[],[],[],[],[]]);});
+test('one resolution handles every completed slot',()=>{const s=[['a','a','a','a'],['b','b','b','b'],[],[],[],[],[],[]];const r=applyMove([['a'],['a','a','a'],['b','b','b','b'],[],[],[],[],[]],0,1);assert.equal(r.cleared.length,2);assert.deepEqual(r.state,[[],[],[],[],[],[],[],[]]);});
